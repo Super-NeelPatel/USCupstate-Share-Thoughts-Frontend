@@ -1,7 +1,7 @@
 import React from "react";
 import "./Post.css";
 import AllActions from "./AllActions";
-const Post = ({ post, posts, setPosts, showActions }) => {
+const Post = ({ post, posts, setPosts, showActions, isCurrentOwner }) => {
   const formatDate = (date) => {
     const newDate = new Date(date);
     return newDate.toLocaleDateString("en-US", {
@@ -27,7 +27,12 @@ const Post = ({ post, posts, setPosts, showActions }) => {
         <h4 className="name">Author: {post.user.name}</h4>
       </div>
       {showActions && (
-        <AllActions post={post} posts={posts} setPosts={setPosts} />
+        <AllActions
+          post={post}
+          posts={posts}
+          setPosts={setPosts}
+          isCurrentOwner={isCurrentOwner}
+        />
       )}
     </div>
   );

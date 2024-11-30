@@ -5,6 +5,7 @@ import NavBar from "./pages/components/navBar";
 import HomePage from "./pages/HomePage";
 import GetSinglePostPage from "./pages/GetSinglePostPage";
 import ReplyToPostPage from "./pages/ReplyToPostPage";
+import EditPostPage from "./pages/EditPostPage";
 
 function App() {
   return (
@@ -15,8 +16,8 @@ function App() {
           <Route path="/" element={<HomePage />} /> {/* Home Page */}
           <Route path="/post" element={<GetSinglePostPage />} />
           <Route path="/post/reply" element={<ReplyToPostPage />} />
-          {/* <Route path="/post/:postId" element={<EditPost />} />
-          <Route path="/create" element={<CreatePost />} /> Create Post */}
+          <Route path="/post/edit" element={<EditPostPage />} />
+          {/* <Route path="/create" element={<CreatePost />} /> Create Post */}
           <Route path="*" element={<NotFoundPage />} /> {/* 404 Page */}
         </Routes>
       </div>
