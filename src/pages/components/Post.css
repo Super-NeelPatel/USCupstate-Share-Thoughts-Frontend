@@ -1,0 +1,38 @@
+.single-item {
+  background-color: rgb(226, 226, 226);
+  min-height: 25rem;
+  padding: 2rem 2rem;
+  margin-bottom: 1rem;
+  position: relative;
+  margin: 50px;
+}
+
+.title-container {
+  display: flex;
+  justify-content: space-between;
+}
+.content {
+  margin-top: 2rem;
+  color: rgb(55, 55, 55);
+  font-weight: 500;
+  line-height: 1.8rem;
+}
+
+.name {
+  color: rgb(55, 55, 55);
+  text-transform: capitalize;
+  margin-top: 5rem;
+  font-size: 18px;
+}
+
+.title-container {
+  display: flex;
+  align-items: center;
+}
+.title-container > .title {
+  font-size: 22px;
+  font-weight: 600;
+}
+.title-container > .date {
+  font-size: 14px;
+}

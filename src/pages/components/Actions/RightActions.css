@@ -1,0 +1,53 @@
+#edit-btn {
+  background-color: #4caf50; /* Green color */
+  color: rgb(255, 255, 255); /* White text */
+  border: none; /* No border */
+  padding: 10px 24px; /* Button padding */
+  border-radius: 5px; /* Rounded corners */
+  font-size: 14px; /* Font size */
+  cursor: pointer; /* Pointer cursor */
+}
+#edit-btn:hover {
+  background-color: #45a049; /* Darker green on hover */
+}
+
+#edit-btn:disabled {
+  background-color: #cccccc; /* Gray color when disabled */
+  cursor: not-allowed; /* Show disabled cursor */
+}
+
+#btn-delete {
+  background-color: #dc3545; /* Red */
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#reply-btn,
+#delete-btn {
+  border: none; /* No border */
+  padding: 10px 20px; /* Button padding */
+  border-radius: 5px; /* Rounded corners */
+  font-size: 14px; /* Font size */
+  cursor: pointer; /* Pointer cursor */
+}
+
+#reply-btn {
+  background-color: #2980b9;
+  color: white;
+}
+
+#delete-btn {
+  background-color: #e74c3c;
+  color: white;
+}
+
+#reply-btn:hover {
+  background-color: #236c9d;
+}
+
+#delete-btn:hover {
+  background-color: #c0392b;
+}

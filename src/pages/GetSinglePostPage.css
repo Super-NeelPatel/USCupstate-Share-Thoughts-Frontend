@@ -1,0 +1,58 @@
+.single-post {
+  background-color: rgb(166, 212, 228);
+  padding: 1rem 4rem;
+  margin: 0 5rem;
+  margin-top: 2rem;
+}
+
+.replies-container {
+  right: 0;
+  margin: 1rem 2rem;
+}
+.reply {
+  background-color: rgba(166, 212, 228, 0.433);
+  width: 80%;
+  padding: 2rem;
+  min-height: 20rem;
+  margin-left: 18rem;
+  margin-bottom: 2rem;
+}
+.no-reply {
+  text-align: center;
+  margin-top: 5rem;
+  font-size: 3rem;
+}
+
+.go-back-btn {
+  cursor: pointer;
+  position: fixed;
+  width: 50px;
+}
+
+.delete-btn-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 7rem;
+}
+
+.btn-delete {
+  padding: 12px 20px;
+  background-color: #e74c3c;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.btn-delete:hover {
+  background-color: #ca4233;
+  cursor: pointer;
+}
+.btn-delete:active {
+  transform: scale(0.9);
+}
+
+/* .reply > .name {
+  font-size: 22px;
+  margin-top: 1rem;
+} */
