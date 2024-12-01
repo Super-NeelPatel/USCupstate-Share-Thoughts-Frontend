@@ -2,8 +2,7 @@ import React from "react";
 import "./BlogList.css";
 import Post from "./Post";
 const BlogList = ({ posts, setPosts }) => {
-  const CURRENT_OWNER = "674692abb66e9f915aa2d527"; // Replce with logged in user id
-  console.log(posts);
+  const CURRENT_OWNER = "67469313b66e9f915aa2d535"; // Replce with logged in user id
   return (
     <ul className="list-blogs">
       <div>

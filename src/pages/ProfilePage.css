@@ -1,0 +1,25 @@
+.stats-container {
+  background-color: gainsboro;
+  max-width: 80%;
+  margin: 5rem auto;
+  /* min-height: 50rem; */
+  padding: 3rem;
+}
+
+#name {
+  text-transform: capitalize;
+  font-size: 3rem;
+  margin: 0;
+}
+.stats {
+  display: flex;
+  width: 100%;
+  margin-top: 2rem;
+  justify-content: space-around;
+  background-color: rgb(44, 62, 80);
+  color: white;
+}
+
+.stats p {
+  font-size: 1.5rem;
+}

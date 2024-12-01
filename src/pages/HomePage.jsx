@@ -9,7 +9,7 @@ const HomePage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const navigate = useNavigate();
-  const userId = "6740a7ba1536aeab99fb7d58"; // Replace with logged-in user ID
+  const userId = "67469313b66e9f915aa2d535"; // Replace with logged-in user ID
   // console.log(posts[0]._id);
   useEffect(() => {
     axios
@@ -43,7 +43,6 @@ const HomePage = () => {
 
   return (
     <div className="homepage">
-      {console.log(posts)}
       <h1 className="heading">Latest Blog Posts</h1>
       <BlogList posts={posts} setPosts={setPosts} />
     </div>

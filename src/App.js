@@ -6,6 +6,8 @@ import HomePage from "./pages/HomePage";
 import GetSinglePostPage from "./pages/GetSinglePostPage";
 import ReplyToPostPage from "./pages/ReplyToPostPage";
 import EditPostPage from "./pages/EditPostPage";
+import CreatePost from "./pages/CreatePost";
+import ProfilePage from "./pages/ProfilePage";
 
 function App() {
   return (
@@ -17,7 +19,8 @@ function App() {
           <Route path="/post" element={<GetSinglePostPage />} />
           <Route path="/post/reply" element={<ReplyToPostPage />} />
           <Route path="/post/edit" element={<EditPostPage />} />
-          {/* <Route path="/create" element={<CreatePost />} /> Create Post */}
+          <Route path="/create" element={<CreatePost />} />
+          <Route path="/profile" element={<ProfilePage />} />
           <Route path="*" element={<NotFoundPage />} /> {/* 404 Page */}
         </Routes>
       </div>

@@ -1,8 +1,7 @@
 import { useNavigate } from "react-router-dom";
-import "./ConfirmDeleteModal.css";
 import axios from "axios";
 
-const ConfirmDeleteModal = ({
+const ConfirmDeletePostModal = ({
   postToDelete,
   setShowDeleteModal,
   postReplies,
@@ -54,4 +53,4 @@ const ConfirmDeleteModal = ({
   );
 };
 
-export default ConfirmDeleteModal;
+export default ConfirmDeletePostModal;

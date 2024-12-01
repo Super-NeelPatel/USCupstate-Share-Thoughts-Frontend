@@ -3,11 +3,10 @@ import axios from "axios";
 import "./GetSinglePostPage.css";
 import { useNavigate, useLocation } from "react-router-dom";
 import Post from "./components/Post";
-import ConfirmDeleteModal from "./components/ConfirmDelete";
-
+import ConfirmDeletePostModal from "./components/ConfirmDeletePostModal";
 // ID TO MAKE DELETE WORKS
 // const USER_ID = "67469313b66e9f915aa2d535"; // NEEL
-const USER_ID = "674692abb66e9f915aa2d527"; // VICT
+const USER_ID = "67469313b66e9f915aa2d535"; // VICT
 
 const GetSinglePostPage = () => {
   const location = useLocation();
@@ -131,7 +130,7 @@ const GetSinglePostPage = () => {
         )}
       </div>
       {showDeleteModal && (
-        <ConfirmDeleteModal
+        <ConfirmDeletePostModal
           postToDelete={postToDelete}
           setShowDeleteModal={setShowDeleteModal}
           setPostToDelete={setPostToDelete}

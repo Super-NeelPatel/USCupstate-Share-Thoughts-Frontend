@@ -5,7 +5,7 @@ import { faHeart as solidHeart } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as regularHeart } from "@fortawesome/free-regular-svg-icons";
 import "./LeftActions.css";
 // const USER_ID = "6742a4d61e27e990efa432ec"; //Mert
-const USER_ID = "67469313b66e9f915aa2d535"; //NEEl
+const USER_ID = "674692abb66e9f915aa2d527"; //NEEl
 
 const LeftActions = ({ post, posts, setPosts }) => {
   const navigate = useNavigate();

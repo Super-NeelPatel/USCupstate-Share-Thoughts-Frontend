@@ -5,7 +5,7 @@ import EditFormComponent from "./components/EditPostForm";
 import axios from "axios";
 
 const EditPostPage = () => {
-  const USER_ID = "674692abb66e9f915aa2d527"; //VICT
+  const USER_ID = "67469313b66e9f915aa2d535"; //VICT
   const location = useLocation();
   const navigate = useNavigate();
   const { post } = location.state;
@@ -16,9 +16,6 @@ const EditPostPage = () => {
   const handleSave = async (updatedPost) => {
     console.log("Saving updated Post: ", updatedPost);
 
-    // Here you would send a PUT/PATCH request to your backend to save the updated post.
-    // Example:
-    // await axios.put(`http://localhost:8000/api/posts/${oldData.id}`, updatedPost);
     console.log(oldData._id);
     try {
       await axios.patch(`http://localhost:8000/api/posts/post/${oldData._id}`, {

@@ -1,15 +1,23 @@
 import { useNavigate } from "react-router-dom";
 import "./RightActions.css";
-const RightActions = ({ post, isCurrentOwner }) => {
+
+import ConfirmDeleteModal from "../ConfirmDeleteModal";
+import { useState } from "react";
+
+const RightActions = ({ post, posts, setPosts, isCurrentOwner }) => {
   const navigate = useNavigate();
-  console.log(isCurrentOwner);
+
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+
   const goToReplyPage = () => {
     navigate("/post/reply", { state: post._id });
   };
   const goToEditPage = () => {
     navigate("/post/edit", { state: { post } });
   };
-
+  const onDeleteButton = () => {
+    setShowDeleteModal(true);
+  };
   return (
     <div className="right-actions">
       {isCurrentOwner && (
@@ -17,7 +25,7 @@ const RightActions = ({ post, isCurrentOwner }) => {
           <button id="edit-btn" className="btn" onClick={goToEditPage}>
             Edit
           </button>
-          <button id="delete-btn" className="btn ">
+          <button id="delete-btn" className="btn" onClick={onDeleteButton}>
             Delete
           </button>
         </>
@@ -26,6 +34,15 @@ const RightActions = ({ post, isCurrentOwner }) => {
         <button id="reply-btn" className="btn" onClick={goToReplyPage}>
           Reply
         </button>
+      )}
+      {showDeleteModal && (
+        <ConfirmDeleteModal
+          isPostBeignDeleted={true}
+          id={post._id}
+          setShowDeleteModal={setShowDeleteModal}
+          posts={posts}
+          setPosts={setPosts}
+        />
       )}
     </div>
   );

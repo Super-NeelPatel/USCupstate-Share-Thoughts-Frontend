@@ -41,6 +41,7 @@
 .form-textarea {
   height: 120px;
   resize: vertical;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 /* Button styling */
