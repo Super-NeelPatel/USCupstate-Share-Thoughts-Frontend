@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./ConfirmDeleteModal.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Spinner from "./Spinner";
 
 //isPostBeiggnDeleted should be true false, if it is false that means we are deleting reply
 const ConfirmDeleteModal = ({
@@ -11,16 +12,24 @@ const ConfirmDeleteModal = ({
   posts,
   setPosts,
 }) => {
+  const [loading, setLoading] = useState(false);
   const onConfirmDelete = async (id) => {
     try {
+      setLoading(true);
       await axios.delete(
-        `http://localhost:8000/api/posts/${id}` //delete req for post
+        `http://localhost:8000/api/posts/${id}`,
+        {
+          headers: {
+            Authorization: `Berear ${localStorage.getItem("token")}`,
+          },
+        } //delete req for post
       );
 
       setPosts((prevPosts) => prevPosts.filter((post) => post._id !== id));
       setShowDeleteModal(false);
     } catch (err) {
       console.log(err);
+      setLoading(false);
     }
   };
 
@@ -43,6 +52,7 @@ const ConfirmDeleteModal = ({
           </button>
         </div>
       </div>
+      {loading && setShowDeleteModal(false) && <Spinner />}
     </div>
   );
 };

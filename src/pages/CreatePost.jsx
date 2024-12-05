@@ -1,59 +1,98 @@
 import axios from "axios";
-import { useState } from "react";
-import "./CreatePost.css";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
-const USER_ID = "67469313b66e9f915aa2d535";
+import NavBar from "./components/navBar";
+import { AuthContext } from "./auth-context";
+import Spinner from "./components/Spinner";
+import WarningModal from "./components/WarningModal";
 
 const CreatePost = () => {
+  const auth = useContext(AuthContext);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [showWarningModal, setShowWarningModal] = useState(false);
+
   const navigate = useNavigate();
 
+  const triggerWarningModal = () => {
+    setShowWarningModal(true);
+  };
+
   const handleSubmit = async (e) => {
+    const token = localStorage.getItem("token");
     e.preventDefault();
 
+    if (title.trim().length < 5 || content.trim().length === 0) {
+      triggerWarningModal();
+      return;
+    }
     try {
-      await axios.post(`http://localhost:8000/api/posts/create`, {
-        title,
-        content,
-        user: USER_ID,
-      });
-      navigate("/");
+      setLoading(true);
+      await axios.post(
+        `http://localhost:8000/api/posts/create`,
+        { title, content, user: auth.userId },
+
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+      setLoading(false);
+      navigate("/home");
     } catch (err) {
       console.log(err);
     }
   };
 
   return (
-    <div className="add-new-blog-container ">
-      <h1>Create New Blog</h1>
-      <form onSubmit={(e) => handleSubmit(e)}>
-        <label htmlFor="title" className="form-label">
-          Title:{" "}
-        </label>
-        <input
-          type="text"
-          className="input-title input"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          required
+    <>
+      <NavBar />
+      {showWarningModal && (
+        <WarningModal
+          message={
+            "Title should be atleast 5 characters long.\nAnd Content should not be empty."
+          }
+          onClose={() => setShowWarningModal(false)}
         />
-        <label htmlFor="content" className="form-label">
-          Content:
-        </label>
-        <textarea
-          type="text"
-          className="input-content input"
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
-          required
-        ></textarea>
-      </form>
-      <button className="submit-btn" onClick={handleSubmit}>
-        Submit
-      </button>
-    </div>
+      )}
+      ;
+      <div className="form-container">
+        <h2 className="form-title">Create New Post</h2>
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="title" className="form-label">
+            Title:
+          </label>
+          <input
+            type="text"
+            id="title"
+            className="form-input"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            required
+          />
+          <label htmlFor="content" className="form-label">
+            Content:
+          </label>
+
+          <textarea
+            id="content"
+            className="form-textarea"
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
+            required
+          ></textarea>
+
+          <button
+            type="submit"
+            className="form-submit-button"
+            onClick={handleSubmit}
+          >
+            Create New
+          </button>
+        </form>
+      </div>
+      {loading && <Spinner />}
+    </>
   );
 };
 export default CreatePost;

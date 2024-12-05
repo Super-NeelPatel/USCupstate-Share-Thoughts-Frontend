@@ -1,7 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../auth-context";
 
 const NavBar = () => {
+  const auth = useContext(AuthContext);
   const navStyle = {
     backgroundColor: "#2c3e50",
     color: "white",
@@ -57,13 +60,13 @@ const NavBar = () => {
 
   return (
     <nav style={navStyle}>
-      <Link to="/" style={logoStyle}>
+      <Link to="/home" style={logoStyle}>
         Upstate Blog
       </Link>
       <ul style={navLinksStyle}>
         <li>
           <Link
-            to="/"
+            to="/home"
             style={navLinkStyle}
             onMouseOver={(e) =>
               (e.target.style.color = navLinkHoverStyle.color)
@@ -98,17 +101,22 @@ const NavBar = () => {
           </Link>
         </li>
       </ul>
-      <button
-        style={navButtonStyle}
-        onMouseOver={(e) =>
-          (e.target.style.backgroundColor = navButtonHoverStyle.backgroundColor)
-        }
-        onMouseOut={(e) =>
-          (e.target.style.backgroundColor = navButtonStyle.backgroundColor)
-        }
-      >
-        Logout
-      </button>
+
+      {auth.isLoggedIn && (
+        <button
+          onClick={auth.logout}
+          style={navButtonStyle}
+          onMouseOver={(e) =>
+            (e.target.style.backgroundColor =
+              navButtonHoverStyle.backgroundColor)
+          }
+          onMouseOut={(e) =>
+            (e.target.style.backgroundColor = navButtonStyle.backgroundColor)
+          }
+        >
+          Logout
+        </button>
+      )}
     </nav>
   );
 };

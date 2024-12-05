@@ -1,38 +1,56 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./ReplyToPost.css";
+import { AuthContext } from "../auth-context";
+import Spinner from "./Spinner";
+import WarningModal from "./WarningModal";
 
 //ID TO APPLY CREATION OF THE POST
 // const USER_ID = "67469313b66e9f915aa2d535"; //NEEL
-const USER_ID = "674692abb66e9f915aa2d527"; // VICT
 
 const ReplyToPost = ({ post }) => {
+  const auth = useContext(AuthContext);
+  const USER_ID = auth.userId;
   const [userName, setUserName] = useState("");
   const [replyContent, setReplyContent] = useState("");
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [showWarningModal, setShowWarningModal] = useState(false);
   const navigate = useNavigate();
+
+  const triggerWarningModal = () => {
+    setShowWarningModal(true);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!userName || !replyContent) {
-      setError("Both fields are required.");
+    if (!replyContent) {
+      setError("Reply field should not be empty.");
+      triggerWarningModal();
       return;
     }
 
     try {
       setLoading(true);
-      await axios.post(`http://localhost:8000/api/posts/post/reply`, {
-        content: replyContent,
-        post: post._id,
-        user: USER_ID,
-      });
+      await axios.post(
+        `http://localhost:8000/api/posts/post/reply`,
+        {
+          content: replyContent,
+          post: post._id,
+          user: USER_ID,
+        },
+        {
+          headers: {
+            Authorization: `Berear ${localStorage.getItem("token")}`,
+          },
+        }
+      );
       setError(null);
       setUserName("");
       setReplyContent("");
-      navigate("/");
+      navigate("/home");
     } catch (err) {
       setError("Something went wrong. Please try again.");
       console.log(err);
@@ -42,43 +60,32 @@ const ReplyToPost = ({ post }) => {
   };
 
   return (
-    <div className="reply-form-container">
-      <form className="reply-form" onSubmit={handleSubmit}>
-        <h3 className="form-title">Reply to Post</h3>
-        {error && <p className="error-message">{error}</p>}
-
-        <div className="input-container">
-          <label className="input-label" htmlFor="userName">
-            Your Name:
-          </label>
-          <input
-            className="input-field"
-            type="text"
-            id="userName"
-            value={userName}
-            onChange={(e) => setUserName(e.target.value)}
-            placeholder="Enter your name"
+    <>
+      <div className="reply-form-container">
+        {showWarningModal && (
+          <WarningModal
+            message={error}
+            onClose={() => setShowWarningModal(false)}
           />
-        </div>
+        )}
+        <form className="reply-form" onSubmit={handleSubmit}>
+          <h3 className="form-title">Reply to Post</h3>
+          <div className="input-container">
+            <textarea
+              className="textarea-field replyContent"
+              value={replyContent}
+              onChange={(e) => setReplyContent(e.target.value)}
+              placeholder="Write your reply here"
+            />
+          </div>
 
-        <div className="input-container">
-          <label className="input-label" htmlFor="replyContent">
-            Reply:
-          </label>
-          <textarea
-            className="textarea-field"
-            id="replyContent"
-            value={replyContent}
-            onChange={(e) => setReplyContent(e.target.value)}
-            placeholder="Write your reply here"
-          />
-        </div>
-
-        <button className="submit-button" type="submit" disabled={loading}>
-          {loading ? "Submitting..." : "Submit Reply"}
-        </button>
-      </form>
-    </div>
+          <button className="submit-button" type="submit">
+            {loading ? "Submiting..." : "Submit Reply"}
+          </button>
+        </form>
+      </div>
+      {loading && <Spinner />}
+    </>
   );
 };
 

@@ -1,15 +1,19 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 // import "./EditPostPage.css";
 import EditFormComponent from "./components/EditPostForm";
 import axios from "axios";
+import NavBar from "./components/navBar";
+import { AuthContext } from "./auth-context";
+import Spinner from "./components/Spinner";
 
 const EditPostPage = () => {
-  const USER_ID = "67469313b66e9f915aa2d535"; //VICT
+  const auth = useContext(AuthContext);
+  const USER_ID = auth.userId; //VICT
   const location = useLocation();
   const navigate = useNavigate();
   const { post } = location.state;
-  console.log(post);
+  const [loading, setLoading] = useState(false);
 
   const oldData = location.state?.post || { title: "", content: "" };
 
@@ -18,22 +22,36 @@ const EditPostPage = () => {
 
     console.log(oldData._id);
     try {
-      await axios.patch(`http://localhost:8000/api/posts/post/${oldData._id}`, {
-        title: updatedPost.title,
-        content: updatedPost.content,
-        user: USER_ID,
-      });
+      setLoading(true);
+      await axios.patch(
+        `http://localhost:8000/api/posts/post/${oldData._id}`,
+        {
+          title: updatedPost.title,
+          content: updatedPost.content,
+          user: USER_ID,
+        },
+        {
+          headers: {
+            Authorization: `Berear ${localStorage.getItem("token")}`,
+          },
+        }
+      );
       // Navigate back to the previous page after saving
-      navigate("/");
+      setLoading(false);
+      navigate("/home");
     } catch (err) {
       console.log(err);
     }
   };
 
   return (
-    <div>
-      <EditFormComponent existingData={oldData} onSave={handleSave} />
-    </div>
+    <>
+      <NavBar />
+      <div>
+        <EditFormComponent existingData={oldData} onSave={handleSave} />
+      </div>
+      {loading && <Spinner />}
+    </>
   );
 };
 

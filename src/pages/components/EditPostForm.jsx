@@ -37,7 +37,9 @@ const EditFormComponent = ({ existingData, onSave }) => {
           onChange={(e) => setTitle(e.target.value)}
           required
         />
-        <label htmlFor="content">Content:</label>
+        <label htmlFor="content" className="form-label">
+          Content:
+        </label>
 
         <textarea
           id="content"

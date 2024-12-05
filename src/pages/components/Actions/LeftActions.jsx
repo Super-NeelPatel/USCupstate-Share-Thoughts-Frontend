@@ -4,10 +4,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart as solidHeart } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as regularHeart } from "@fortawesome/free-regular-svg-icons";
 import "./LeftActions.css";
-// const USER_ID = "6742a4d61e27e990efa432ec"; //Mert
-const USER_ID = "674692abb66e9f915aa2d527"; //NEEl
+import { useContext } from "react";
+import { AuthContext } from "../../auth-context";
 
 const LeftActions = ({ post, posts, setPosts }) => {
+  const auth = useContext(AuthContext);
+  const USER_ID = auth.userId;
   const navigate = useNavigate();
   const handleShowReplies = async (postId) => {
     navigate("/post", { state: postId });
@@ -19,7 +21,12 @@ const LeftActions = ({ post, posts, setPosts }) => {
       // Call the backend to toggle like
       const res = await axios.post(
         `http://localhost:8000/api/posts/${postId}/like`,
-        { user: USER_ID }
+        { user: USER_ID },
+        {
+          headers: {
+            Authorization: `Berear ${localStorage.getItem("token")}`,
+          },
+        }
       );
 
       // Update the local state to reflect the new likes array

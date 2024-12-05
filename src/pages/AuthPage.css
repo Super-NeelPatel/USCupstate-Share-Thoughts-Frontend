@@ -1,0 +1,58 @@
+#auth-page {
+  background-color: rgb(44, 62, 80);
+  width: 100%;
+  height: 100vh;
+  margin-top: 0;
+  margin: auto auto;
+  .description-container {
+    padding-top: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .feature-list {
+    list-style: none;
+  }
+
+  .hero-title {
+    margin: 0;
+    color: white;
+    font-size: 4rem;
+    line-height: 6rem;
+    display: inline-block;
+  }
+  .highlight {
+    background-color: rgb(26, 188, 156);
+    padding: 0.3rem 1rem 0.9rem 1rem;
+    transform: skew(-10deg);
+  }
+  .feature-list {
+    display: inline-block;
+    color: white;
+    /* padding: 4rem; */
+    margin-left: 10rem;
+
+    .feature {
+      font-size: 1.5rem;
+      background-color: rgb(26, 188, 156);
+      background-color: rgb(26, 188, 156, 0.3);
+      padding: 1rem;
+      transform: skew(-10deg);
+    }
+  }
+  #actions-btn {
+    margin-top: 8rem;
+    margin-left: 16rem;
+
+    .btn {
+      border: 1px solid rgb(26, 188, 156);
+      background-color: rgb(26, 188, 156, 0.3);
+      padding: 1rem 2rem;
+      font-size: 1rem;
+      color: white;
+    }
+    .btn:hover {
+      background-color: rgb(26, 188, 156, 0.7);
+    }
+  }
+}

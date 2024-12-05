@@ -20,7 +20,12 @@ const ConfirmDeletePostModal = ({
     console.log(postReplies);
     try {
       await axios.delete(
-        `http://localhost:8000/api/posts/post/${postToDelete._id}`
+        `http://localhost:8000/api/posts/post/${postToDelete._id}`,
+        {
+          headers: {
+            Authorization: `Berear ${localStorage.getItem("token")}`,
+          },
+        }
       );
       setPostReplies((prevReplies) => {
         prevReplies.filter((prevReply) => prevReply._id !== postToDelete._id);
