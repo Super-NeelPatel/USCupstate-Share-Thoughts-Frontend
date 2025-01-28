@@ -16,7 +16,7 @@ const ProfilePage = () => {
       setIsLoading(true);
       try {
         const response = await axios.get(
-          `http://localhost:8000/api/posts/getUserStats/${USER_ID}`,
+          `https://blog-site-frontend-dlxl.onrender.com/api/posts/getUserStats/${USER_ID}`,
           {
             headers: {
               Authorization: `Berear ${localStorage.getItem("token")}`,
