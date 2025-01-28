@@ -18,7 +18,7 @@ const ReplyToPostPage = () => {
       try {
         setLoading(true);
         const response = await axios.get(
-          `http://localhost:8000/api/posts/${postId}`,
+          `https://blog-site-frontend-dlxl.onrender.com/api/posts/${postId}`,
           {
             headers: {
               Authorization: `Berear ${localStorage.getItem("token")}`,
