@@ -24,7 +24,7 @@ const Signup = () => {
 
     try {
       const res = await axios.post(
-        "http://localhost:8000/api/users/signup",
+        "https://blog-site-frontend-dlxl.onrender.com/api/users/signup",
         formData,
         {
           headers: {
