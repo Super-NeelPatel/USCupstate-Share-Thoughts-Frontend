@@ -24,7 +24,7 @@ const EditPostPage = () => {
     try {
       setLoading(true);
       await axios.patch(
-        `http://localhost:8000/api/posts/post/${oldData._id}`,
+        `https://blog-site-frontend-dlxl.onrender.com/api/posts/post/${oldData._id}`,
         {
           title: updatedPost.title,
           content: updatedPost.content,
