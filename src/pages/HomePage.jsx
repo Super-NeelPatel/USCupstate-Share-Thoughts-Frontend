@@ -16,7 +16,7 @@ const HomePage = () => {
   const navigate = useNavigate();
   useEffect(() => {
     axios
-      .get("http://localhost:8000/api/posts/", {
+      .get("https://blog-site-frontend-dlxl.onrender.com/api/posts/", {
         headers: {
           Authorization: `Bearer ${auth.token}`,
         },
