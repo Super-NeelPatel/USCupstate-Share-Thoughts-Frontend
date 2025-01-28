@@ -30,7 +30,7 @@ const CreatePost = () => {
     try {
       setLoading(true);
       await axios.post(
-        `http://localhost:8000/api/posts/create`,
+        `https://blog-site-frontend-dlxl.onrender.com/api/posts/create`,
         { title, content, user: auth.userId },
 
         {
