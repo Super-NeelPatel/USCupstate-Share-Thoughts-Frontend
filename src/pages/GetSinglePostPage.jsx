@@ -54,12 +54,12 @@ const GetSinglePostPage = () => {
 
     try {
       const [postResponse, repliesResponse] = await Promise.all([
-        axios.get(`http://localhost:8000/api/posts/${postId}`, {
+        axios.get(`https://blog-site-frontend-dlxl.onrender.com/api/posts/${postId}`, {
           headers: {
             Authorization: `Berear ${localStorage.getItem("token")}`,
           },
         }),
-        axios.get(`http://localhost:8000/api/posts/post/${postId}/getReplies`, {
+        axios.get(`https://blog-site-frontend-dlxl.onrender.com/api/posts/post/${postId}/getReplies`, {
           headers: {
             Authorization: `Berear ${localStorage.getItem("token")}`,
           },
